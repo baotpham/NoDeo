@@ -29,10 +29,10 @@
     function loadPage(page) {
         console.log(" Loadin Page ");
         $.ajax({
-            url: './clientJS/login.js',
+            url: './clientJS/main.js',
             dataType: "script",
             success: function() {
-                $("#page").load('./pages/login.html')
+                $("#page").load('./pages/main.html')
                 console.log('GOT IT');
             }
         });

@@ -1,5 +1,5 @@
-// Author: Dagmawi Mulugeta
-// Purpose: JS file for adjacent HTML file
+// Author : ...
+// Purpose : ...
 
 (function() {
     // URL's that adress the services this application consumes
