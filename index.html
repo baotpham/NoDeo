@@ -1,31 +1,87 @@
 <html>
-    <head>
-        <title>Nodeo Login</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
+<!--
+	Author:   Dagmawi Mulugeta
+	File:     lab3/index.html, references .css and .js
+	Purpose:  Simple application that consumes a internal API and populates a div
+	Platform:  Visual Studio Code running on OS Seirra and Chrome browser
+-->
 
-    <body>
-        <form>
+<head>
+    <meta charset="UTF-8">
+    <title>My Table Project</title>
+    <!--link tag with style sheet files -->
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
 
-        <div class="imgcontainer">
-            <img src="img_avatar2.png" alt="Avatar" class="avatar">
-        </div>
+<body>
+    <h2> Table At Bottom, Scroll down</h2>
+    <!--Section for Table Selection-->
+    <h3> Display Table Section </h3>
+    <select id="table_select">
+            <option value="STUDENT">STUDENT</option>
+            <option value="COURSE">COURSE</option>
+			<option value="GRADES">GRADES</option>
+        </select>
+    <br>
+    <br>
+    <button id="disp_table_button" type="submit"> Display </button>
+    <br>
+    <br>
+    <!--Reult Div-->
+    <div id="result_div"></div>
 
-        <div class="container">
-            <label><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="uname" required>
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    <div id="player"></div>
 
-            <label><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" required>
+    <script>
+        // 2. This code loads the IFrame Player API code asynchronously.
+        var tag = document.createElement('script');
 
-            <button type="submit">Login</button>
-            <input type="checkbox" checked="checked"> Remember me
-        </div>
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-        <div class="container" style="background-color:#f1f1f1">
-            <span class="psw">Forgot <a href="#">password?</a></span>
-        </div>
-        </form>
-    </body>
+        // 3. This function creates an <iframe> (and YouTube player)
+        //    after the API code downloads.
+        var player;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '390',
+                width: '640',
+                videoId: 'M7lc1UVf-VE',
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        // 4. The API will call this function when the video player is ready.
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+
+        // 5. The API calls this function when the player's state changes.
+        //    The function indicates that when playing a video (state=1),
+        //    the player should play for six seconds and then stop.
+        var done = false;
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING && !done) {
+                setTimeout(stopVideo, 6000);
+                done = true;
+            }
+        }
+
+        function stopVideo() {
+            player.stopVideo();
+        }
+    </script>
+</body>
+
+<!--Script atsg to include jquery and other js files-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="./index.js"></script>
 
 </html>

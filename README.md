@@ -1,2 +1,2 @@
 # NoDeo
-The application allows you to take notes on videos
+The application allows you to take notes on videos.
