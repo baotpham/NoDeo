@@ -1,87 +1,24 @@
 <html>
 <!--
-	Author:   Dagmawi Mulugeta
-	File:     lab3/index.html, references .css and .js
-	Purpose:  Simple application that consumes a internal API and populates a div
+	Author:   ...
+	File:     index.html, references .css and .js
+	Purpose:  ..
 	Platform:  Visual Studio Code running on OS Seirra and Chrome browser
 -->
+<div>
 
-<head>
-    <meta charset="UTF-8">
-    <title>My Table Project</title>
-    <!--link tag with style sheet files -->
-    <link rel="stylesheet" type="text/css" href="styles.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>NoDeo</title>
+        <!--link tag with style sheet files -->
+        <link rel="stylesheet" type="text/css" href="../stylings/styles.css">
+        <!--Script atsg to include jquery and other js files-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="./index.js"></script>
+    </head>
 
-<body>
-    <h2> Table At Bottom, Scroll down</h2>
-    <!--Section for Table Selection-->
-    <h3> Display Table Section </h3>
-    <select id="table_select">
-            <option value="STUDENT">STUDENT</option>
-            <option value="COURSE">COURSE</option>
-			<option value="GRADES">GRADES</option>
-        </select>
-    <br>
-    <br>
-    <button id="disp_table_button" type="submit"> Display </button>
-    <br>
-    <br>
-    <!--Reult Div-->
-    <div id="result_div"></div>
-
-    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-    <div id="player"></div>
-
-    <script>
-        // 2. This code loads the IFrame Player API code asynchronously.
-        var tag = document.createElement('script');
-
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        // 3. This function creates an <iframe> (and YouTube player)
-        //    after the API code downloads.
-        var player;
-
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-                height: '390',
-                width: '640',
-                videoId: 'M7lc1UVf-VE',
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-        }
-
-        // 4. The API will call this function when the video player is ready.
-        function onPlayerReady(event) {
-            event.target.playVideo();
-        }
-
-        // 5. The API calls this function when the player's state changes.
-        //    The function indicates that when playing a video (state=1),
-        //    the player should play for six seconds and then stop.
-        var done = false;
-
-        function onPlayerStateChange(event) {
-            if (event.data == YT.PlayerState.PLAYING && !done) {
-                setTimeout(stopVideo, 6000);
-                done = true;
-            }
-        }
-
-        function stopVideo() {
-            player.stopVideo();
-        }
-    </script>
-</body>
-
-<!--Script atsg to include jquery and other js files-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="./index.js"></script>
+    <body id="page">
+    </body>
+</div>
 
 </html>
