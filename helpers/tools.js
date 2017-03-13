@@ -16,7 +16,7 @@ function ToolModule() {
     this.loadPage = function(page) {
         console.log(" Loading Page -> ", page);
         $.ajax({
-            url: './clientJS/' + page + '.js',
+            url: './www/js/' + page + '.js',
             dataType: "script",
             success: function() {
                 $("#page").load('./pages/' + page + '.html')
