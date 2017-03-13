@@ -7,6 +7,16 @@ div {
     align-items: center;
 }
 
+navbar{
+	font-size: 200px;
+}
+canvas{
+	width: 100%;
+	height: auto;
+	position: absolute;
+}
+
+
 button {
     background-color: #4CAF50;
     /* Green */
@@ -37,6 +47,7 @@ h1 {
     margin-left: 0;
     margin-right: 0;
     font-weight: bold;
+	color:white;
 }
 
 h3 {
