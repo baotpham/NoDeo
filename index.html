@@ -21,8 +21,8 @@
 
         <!--Script atsg to include jquery and other js files-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <!--<script src="./index.js"></script>-->
-        <!--<script src="../clientJS/main.js"></script>-->
+        <script src="www/js/index.js"></script>
+        <script src="www/js/main.js"></script>
 
         <script type="text/javascript">
             var canvas, ctx, flag = false,
@@ -145,7 +145,8 @@
 
 
     <body onload="init()">
-        <canvas id="can" width="400" height="400" style="position:absolute;top:10%;left:10%;border:2px solid;"></canvas>
+
+        <canvas class="container" id="can" width="400" height="400" style="position:absolute;top:10%;left:10%;border:2px solid;"></canvas>
         <div style="position:absolute;top:12%;left:43%;">Choose Color</div>
         <div style="position:absolute;top:15%;left:45%;width:10px;height:10px;background:green;" id="green" onclick="color(this)"></div>
         <div style="position:absolute;top:15%;left:46%;width:10px;height:10px;background:blue;" id="blue" onclick="color(this)"></div>
@@ -156,8 +157,9 @@
         <div style="position:absolute;top:20%;left:43%;">Eraser</div>
         <div style="position:absolute;top:22%;left:45%;width:15px;height:15px;background:white;border:2px solid;" id="white" onclick="color(this)"></div>
         <img id="canvasimg" style="position:absolute;top:10%;left:52%;" style="display:none;">
-        <input type="button" value="save" id="btn" size="30" onclick="save()" style="position:absolute;top:55%;left:10%;">
-        <input type="button" value="clear" id="clr" size="23" onclick="erase()" style="position:absolute;top:55%;left:15%;">
+        
+        <input class="btn btn-success btn-lg" type="button" value="save" id="btn" size="30" onclick="save()" style="position:absolute;top:55%;left:10%;">
+        <input class="btn btn-danger btn-lg" type="button" value="clear" id="clr" size="23" onclick="erase()" style="position:absolute;top:55%;left:23%;">
     </body>
 
 </html>
