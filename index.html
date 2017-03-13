@@ -21,8 +21,8 @@
 
         <!--Script atsg to include jquery and other js files-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <!--<script src="./index.js"></script>-->
-        <!--<script src="../clientJS/main.js"></script>-->
+        <script src="www/js/index.js"></script>
+        <script src="www/js/main.js"></script>
 
         <script type="text/javascript">
             var canvas, ctx, flag = false,
@@ -184,15 +184,17 @@
 		</div>
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-6">
-					<img id="canvasimg" style="display:none;">
+				<div class="col-md-4">
+					<img id="canvasimg" width="300" height="300">
 				</div>
 			</div>
 		</div>
 		<div class="container">
 			<div class="row">
-				<button type="button" class="btn btn-large" id="btn" size="30" onclick="save()">Save</button>
-				<button type="button" class="btn btn-large" id="clr" size="23" onclick="erase()">Erase</button>
+				<div class="col-md-4">
+					<button type="button" class="btn btn-large" id="btn" size="30" onclick="save()">Save</button>
+					<button type="button" class="btn btn-large" id="clr" size="23" onclick="erase()">Erase</button>
+				</div>
 			</div>
 		</div>
     </body>

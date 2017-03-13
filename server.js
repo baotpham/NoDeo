@@ -14,6 +14,11 @@
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json());
 
+    //Login Page
+    app.get('/', function (req, res) {
+        res.sendFile(path.join(__dirname + '/login.html'));
+    });
+
     // Start listening for requests
     var server = app.listen(8080, function() {
         var port = server.address().port;
