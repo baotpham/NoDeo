@@ -21,15 +21,15 @@
     });
 
     // Get Database name and password from key.json file, one level higher.
-    var key = fs.readFileSync('../key.json', 'utf8');
-    config = JSON.parse(key)
+    // var key = fs.readFileSync('../key.json', 'utf8');
+    // config = JSON.parse(key)
 
-    var connection = mysql.createConnection({
-        host: config["host"],
-        user: config["user"],
-        password: config["password"],
-        database: config["database"]
-    });
+    // var connection = mysql.createConnection({
+    //     host: config["host"],
+    //     user: config["user"],
+    //     password: config["password"],
+    //     database: config["database"]
+    // });
 
 
     // Get responders with require actions 

@@ -1,0 +1,19 @@
+{
+  "name": "nodeo",
+  "version": "1.0.0",
+  "description": "cs275",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baotpham/NoDeo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/baotpham/NoDeo/issues"
+  },
+  "homepage": "https://github.com/baotpham/NoDeo#readme"
+}
