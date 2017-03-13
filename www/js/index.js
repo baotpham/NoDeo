@@ -7,7 +7,7 @@
     $(document).ready(function() {
         $.getScript('./helpers/tools.js', function(data, textStatus, jqxhr) {
             tools = new ToolModule();
-            tools.loadPage("index");
+            // tools.loadPage("index");
         })
     });
 })();
