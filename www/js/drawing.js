@@ -1,102 +1,68 @@
-var canvas;
-var ctx;
-var lastX
-var lastY;
-var x = "black";
-var y = 2;
-var color;
-var mousePressed = false;
+$(document).ready(function(){
 
-//initialize mouse events
-function initCanvas() {
-    canvas = document.getElementById('canvas');
-    ctx = document.getElementById('canvas').getContext("2d");
+    //define $()
+    var $ = function(id){return document.getElementById(id)};
 
-    w = canvas.width;
-    h = canvas.height;
-    clearAll();
+    //initialize canvas
+    var canvas = this.__canvas = new fabric.Canvas('canvas', {
+        isDrawingMode: true
+    });
+
+    fabric.Object.prototype.transparentCorners = false;
+
+    //set up variables
+    var drawingModeEl = $('drawing-mode'),
+        drawingOptionsEl = $('drawing-mode-options'),
+        drawingColorEl = $('drawing-color'),
+        drawingLineWidthEl = $('drawing-line-width'),
+        clearEl = $('clear-canvas');
+        saveEl = $('save-canvas');
     
-    $('#canvas').mousedown(function (e) {
-        mousePressed = true;
-        draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);
-    });
-    $('#canvas').mousemove(function (e) {
-        if (mousePressed) {
-            draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
+    //clear canvas
+    clearEl.onclick = function() { canvas.clear() };
+    
+    //save canvas by converting into JSON 
+    saveEl.onclick = function(){
+        var json = JSON.stringify(canvas.toJSON());
+        console.log('CURRENT CANVAS: \n\n' + json);
+    }
+
+    //turn on and off drawing mode
+    drawingModeEl.onclick = function() {
+        canvas.isDrawingMode = !canvas.isDrawingMode;
+        if (canvas.isDrawingMode) {
+            drawingModeEl.innerHTML = 'Exit drawing mode';
+            drawingOptionsEl.style.display = '';
         }
-    });
-    $('#canvas').mouseup(function (e) {
-        mousePressed = false;
-    });
+        else {
+            drawingModeEl.innerHTML = 'Enter drawing mode';
+            drawingOptionsEl.style.display = 'none';
+        }
+    };
 
-    $('#canvas').mouseleave(function (e) {
-        mousePressed = false;
-    });
-}
+    //select mode
+    $('drawing-mode-selector').onchange = function() {
+        canvas.freeDrawingBrush = new fabric[this.value + 'Brush'](canvas);
+        if (canvas.freeDrawingBrush) {
+            canvas.freeDrawingBrush.color = drawingColorEl.value;
+            canvas.freeDrawingBrush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
+        }
+    };
 
-//reset all
-function clearAll(){
-    ctx.clearRect(0, 0, w, h);
-    document.getElementById("canvasimg").style.display = "none";
-}
+    //update drawing tool values
+    drawingColorEl.onchange = function() {
+        canvas.freeDrawingBrush.color = this.value;
+    };
+    drawingLineWidthEl.onchange = function() {
+        canvas.freeDrawingBrush.width = parseInt(this.value, 10) || 1;
+        this.previousSibling.innerHTML = this.value;
+    };
 
-//set drawing color
-function changeColor(type) {
-    switch (type) {
-        case "green":
-            color = "green";
-            break;
-        case "blue":
-            color = "blue";
-            break;
-        case "red":
-            color = "red";
-            break;
-        case "yellow":
-            color = "yellow";
-            break;
-        case "orange":
-            color = "orange";
-            break;
-        case "black":
-            color = "black";
-            break;
-        case "white":
-            color = "white";
-            break;
+    //set up canvas at the beginning
+    if (canvas.freeDrawingBrush) {
+        canvas.freeDrawingBrush.color = drawingColorEl.value;
+        canvas.freeDrawingBrush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
     }
-    console.log('color: ' + color);
-}
+});
 
-//draw the canvas
-function draw(x, y, isDown) {
-    if (isDown) {
-        ctx.beginPath();
-        ctx.strokeStyle = color;
-        ctx.lineWidth = $('#setWidth').val();
-        ctx.lineJoin = "round";
-        ctx.moveTo(lastX, lastY);
-        ctx.lineTo(x, y);
-        ctx.closePath();
-        ctx.stroke();
-    }
-    lastX = x;
-    lastY = y;
-}
 
-//erase path
-function erase() {
-    var m = confirm("Want to clear");
-    if (m) {
-        ctx.clearRect(0, 0, w, h);
-        document.getElementById("canvasimg").style.display = "none";
-    }
-}
-
-//save data to png
-function save() {
-    document.getElementById("canvasimg").style.border = "2px solid";
-    var dataURL = canvas.toDataURL();
-    document.getElementById("canvasimg").src = dataURL;
-    document.getElementById("canvasimg").style.display = "inline";
-}
