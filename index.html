@@ -24,6 +24,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		
+		<script src="www/js/fabric.js"></script>
         <script src="www/js/drawing.js"></script>
         <script src="www/js/index.js"></script>
         <script src="www/js/main.js"></script>
@@ -45,7 +47,50 @@
 				</ul>
 			</div>
 		</nav>
+
+
+		<!--canvas container-->
+		<div class="container" style="display: inline-block; margin-left: 10px">
+			<div class="row">
+				<div class="col-md-10">
+					<canvas id="canvas" width="300" height="300" style="border:2px solid;"></canvas>
+				</div>
+			</div>
+		</div>
+
+		<!--canvas file menu-->
 		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<button class="btn btn-large" id="save-canvas">Save</button>
+					<button class="btn btn-large" id="drawing-mode">Cancel drawing mode</button><br>
+					<button class="btn btn-large" id="clear-canvas">Clear</button><br>
+				</div>
+			</div>
+		</div>
+
+		<!--canvas tools options-->
+		<div class="container row" style="display: inline-block; margin-left: 10px">
+			<div class="col-sm-4" id="drawing-mode-options">
+				<label for="drawing-mode-selector">Mode:</label>
+				<select id="drawing-mode-selector">
+					<option>Pencil</option>
+					<option>Circle</option>
+					<option>Spray</option>
+				</select><br>
+
+				<label for="drawing-line-width">Line width:</label>
+				<input type="range" value="10" min="0" max="20" id="drawing-line-width"><br>
+
+				<label for="drawing-color">Line color:</label>
+				<input type="color" value="#ff0000" id="drawing-color"><br>
+			</div>
+		</div>
+
+
+
+
+		<!--<div class="container">
 			<div class="row">
 				<div class="col-sm-5">
                     <label> Choose Color</label>
@@ -82,20 +127,22 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4">
-					<button type="button" class="btn btn-large" id="btn" size="30" onclick="save()">Save</button>
-					<button type="button" class="btn btn-large" id="clr" size="23" onclick="erase()">Erase</button>
+					<button class="btn btn-large" id="save-canvas2" size="30">Save</button>
+					<button class="btn btn-large" id="drawing-mode2" size="30">Exit Drawing Mode</button>
+					<button class="btn btn-large" id="clear-canvas2" size="23">Clear All</button>
 				</div>
 			</div>
-		</div>
-        <script>
-            window.onload = function() {
-                initCanvas();
-            }
-        </script>
+		</div>-->
 
         <div id="player">
 
         </div>
+
+
     </body>
 
 </html>
+
+
+
+
