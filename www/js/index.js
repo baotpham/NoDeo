@@ -5,9 +5,10 @@
     var baseURL = "http://localhost:8080"
         //Make sure DOM calls are made after the document is ready
     $(document).ready(function() {
-        $.getScript('./helpers/tools.js', function(data, textStatus, jqxhr) {
+        console.log('index.js loaded');
+        $.getScript('js/tools.js', function(data, textStatus, jqxhr) {
             tools = new ToolModule();
-            // tools.loadPage("index");
+            tools.loadPage("main");
         })
     });
 })();
