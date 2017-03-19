@@ -20,7 +20,7 @@ function database() {
 utils.inherits(database, EventEmitter);
 
 database.prototype.getUserTable = function() {
-    var str = 'SELECT username, type FROM users order by username';
+    var str = 'SELECT username, type FROM users ORDER BY username';
     var self = this;
     con.query(str,
         function(err, rows, fields) {
@@ -55,10 +55,19 @@ database.prototype.login = function(username, password) {
 
 
 
-database.prototype.setNotes = function(data) {
-    var str = 'SELECT * from USERS';
+database.prototype.setNotes = function(username, time, note) {
+    var str = 'INSERT INTO notes ( username, time, note ) VALUES ( \'' + username + '\', \'' + time + '\', \'' + note + '\' )';
     var self = this;
     console.log('query', str);
+    con.query(str, function(err, rows, fields) {
+        if (err) {
+            console.log('Error', err);
+            return 0;
+        } 
+    });
+    
+    // Check if row was added
+    str = 'SELECT ROW_COUNT()'
     con.query(str, function(err, rows, fields) {
         if (err) {
             console.log('Error', err);
@@ -73,8 +82,9 @@ database.prototype.setNotes = function(data) {
     });
 };
 
-database.prototype.getNotes = function() {
-    var str = 'SELECT * from USERS';
+// Retrieve all notes associated with username
+database.prototype.getNotes = function(username) {
+    var str = 'SELECT note FROM notes WHERE username = \'' + username + '\'';
     var self = this;
     console.log('query', str);
     con.query(str, function(err, rows, fields) {
@@ -83,7 +93,7 @@ database.prototype.getNotes = function() {
             return 0;
         } else {
             if (rows.length > 0) {
-                self.emit('gotNotes', 1);
+                self.emit('gotNotes', 1); // I think you want to actually emit the notes' JSON rather than an integer?
             } else {
                 self.emit('gotNotes', 0);
             }
@@ -92,10 +102,19 @@ database.prototype.getNotes = function() {
 };
 
 
-database.prototype.setUser = function(data) {
-    var str = 'SELECT * from USERS';
+database.prototype.setUser = function(username, password, type) {
+    var str = 'INSERT INTO users ( username, password, type ) VALUES ( \'' + username + '\', \'' + password + '\', \'' + type + '\' )';
     var self = this;
     console.log('query', str);
+    con.query(str, function(err, rows, fields) {
+        if (err) {
+            console.log('Error', err);
+            return 0;
+        }
+    });
+    
+    // Check if user was added
+    str = 'SELECT ROW_COUNT()'
     con.query(str, function(err, rows, fields) {
         if (err) {
             console.log('Error', err);
