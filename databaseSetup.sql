@@ -5,14 +5,14 @@ USE vnt;
 CREATE TABLE users (
 	userid INT KEY AUTO_INCREMENT,
 	username VARCHAR(20) UNIQUE NOT NULL, 
-    password VARCHAR(100) NOT NULL, 
-    type CHAR(1) DEFAULT 1
+	password VARCHAR(100) NOT NULL, 
+	type CHAR(1) DEFAULT 1
 );
 
 CREATE TABLE notes (
 	noteID INT KEY AUTO_INCREMENT,
-    username VARCHAR(20),
-    time DECIMAL(65,4),
-    note TEXT,
-    url VARCHAR(255)
+	username VARCHAR(20),
+	time DECIMAL(65,4),
+	note TEXT,
+	url VARCHAR(255)
 );
