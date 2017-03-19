@@ -39,44 +39,13 @@
 
 
 
-    app.get('/getNotes', function(req, res) {
-        db.once('gotNotes', function(msg) {
-            if (msg == 1) {
-                // req.session.userid = req.body.username;
-                console.log(msg);
-                res.status(200);
-                res.send("SUCCESS");
-            } else {
-                req.session.msg = "Failed save";
-                res.status(400);
-                res.send("Error saving information");
-            }
-        });
-        db.getNotes(data);
-    });
-
-
-
-    app.post('/setNotes', function(req, res) {
-        db.once('notesSet', function(msg) {
-            if (msg == 1) {
-                // req.session.userid = req.body.username;
-                res.status(200);
-                res.send("SUCCESS");
-            } else {
-                req.session.msg = "Failed save";
-                res.status(400);
-                res.send("Error getting information");
-            }
-        });
-        db.setNotes(data);
-    });
-
+    //---------------------SET THESE UP--------------------------------
     app.post('/setUser', function(req, res) {
         db.once('userSet', function(msg) {
             if (msg == 1) {
                 // req.session.userid = req.body.username;
                 res.status(200);
+                console.log("Set User success");
                 res.send("SUCCESS");
             } else {
                 req.session.msg = "Failed add";
@@ -84,26 +53,46 @@
                 res.send("Error adding user");
             }
         });
-        console.log(req.body.username, req.body.password)
-        res.send("SUCCESS");
-        // db.setUser(req.body.username,req.body.password);
+        // res.send("SUCCESS");
+        // console.log(req.body.username, req.body.password, 1)
+        db.setUser(req.body.username, req.body.password, 1);
+    });
+
+    app.get('/getNotes', function(req, res) {
+        db.once('gotNotes', function(msg) {
+            if (msg != "") {
+                res.status(200);
+                res.send(msg);
+            } else {
+                req.session.msg = "Failed save";
+                res.status(400);
+                res.send("Error getting note information");
+            }
+        });
+        // console.log(req.query.username)
+        db.getNotes(req.query.username);
     });
 
 
-    // app.get('/getUsers', function(req, res) {
-    //     db.once('usertable', function(rows) {
-    //         var str = "<table><th>User</th><th>Permissions</th>";
-    //         for (var i = 0; i < rows.length; i++) {
-    //             str += "<tr><td>" + rows[i].username + "</td><td>" + rows[i].type + "</td></tr>";
-    //         }
-    //         str += "</table>";
-    //         str += `<br>Add User <form method=post action='/addUser'> Username: <input name=username> Password: <input name=pass>
-    //                 Type <select> name = type <option value=1>User</option> <option value=2>Admin</option> </select>
-    //                 <submit value='Add User'></form>`;
-    //         res.send('<html><body>' + str + '</body></html>');
-    //     });
-    //     db.getUserTable();
-    // });
+    app.post('/setNotes', function(req, res) {
+        db.once('notesSet', function(msg) {
+            if (msg == 1) {
+                res.status(200);
+                res.send("SUCCESS setting notes");
+            } else {
+                req.session.msg = "Failed save";
+                res.status(400);
+                res.send("Error setting notes");
+            }
+        });
+        // console.log(req.body.username, req.body.time, req.body.note);
+        db.setNotes(req.body.username, req.body.time, req.body.note);
+    });
+
+    // ----------------------------------------------------------------
+
+
+
 
 
 
@@ -122,9 +111,6 @@
         });
         db.login(req.body.username, req.body.password);
     });
-
-
-
     app.post('/logout', function(req, res) {
         req.session.reset();
         req.session.msg = 'You logged out';
@@ -132,6 +118,23 @@
         res.send("Logged Out");
         //return res.redirect('/');
     });
+
+
+    // app.get('/getUsers', function(req, res) {
+    //     db.once('usertable', function(rows) {
+    //         var str = "<table><th>User</th><th>Permissions</th>";
+    //         for (var i = 0; i < rows.length; i++) {
+    //             str += "<tr><td>" + rows[i].username + "</td><td>" + rows[i].type + "</td></tr>";
+    //         }
+    //         str += "</table>";
+    //         str += `<br>Add User <form method=post action='/addUser'> Username: <input name=username> Password: <input name=pass>
+    //                 Type <select> name = type <option value=1>User</option> <option value=2>Admin</option> </select>
+    //                 <submit value='Add User'></form>`;
+    //         res.send('<html><body>' + str + '</body></html>');
+    //     });
+    //     db.getUserTable();
+    // });
+
 
 
 })();

@@ -4,32 +4,30 @@
     //Make sure DOM calls are made after the document is ready
     // ToolModule = require('tools');
     // console.log('ToolModule', ToolModule);
-    // $.getScript('./js/tools.js', function(data, textStatus, jqxhr) {
-    // tools = new ToolModule();
-    console.log('tools', tools);
-    console.log('main.js HERE');
-    setLoginSignUpIdentifier();
-    setEventHandlers();
-    // })
+    $.getScript('./js/tools.js', function(data, textStatus, jqxhr) {
+        tools = new ToolModule();
+        console.log('tools', tools);
+        console.log('main.js HERE');
+        setLoginSignUpIdentifier();
+        setEventHandlers();
+        getNotes("Dagmawi");
+    })
 
     // Attach all the event handlers for the buttons
     function setEventHandlers() {
+
         $("#login_button").click(function() {
             console.log("login clicked");
-            // if (tools != undefined) {
-            // tools.loadPage("login");
-            // } else {
-            // tools.loadPage("login");
-            // }
-
+            tools.loadPage("login");
+            tools.loadPage("login");
         })
+
         $("#signup_button").click(function() {
             console.log("signup clicked");
+            tools.loadPage("signup")
         })
-        $("#logout_button").click(function() {
-            console.log("logout clicked");
-            logoutUser();
-        })
+
+        $("#logout_button").click(logoutUser)
     }
 
 
@@ -45,6 +43,7 @@
     function logoutUser() {
         // $.getScript('./js/tools.js', function(data, textStatus, jqxhr) {
         // tools = new ToolModule();
+        console.log("logout clicked");
         tools.makeRequest('post', 'logout', {}).done(function(msg) {
                 console.log("LOGGED OUT", msg);
                 sessionStorage.setItem("UserName", "");
@@ -55,6 +54,42 @@
             })
             // })
     }
+
+    function getNotes(user) {
+        tools.makeRequest('get', 'getNotes', {
+            username: user
+        }).done(function(notes) {
+            console.log("Got notes", JSON.parse(notes));
+        }).fail(function(error) {
+            console.log("Could not get data ->", error);
+        })
+    }
+
+
+
+    function saveNote(note) {
+        if (sessionStorage.getItem("UserName") && sessionStorage.getItem("UserName") != "") {
+            var obj = {
+                username: sessionStorage.getItem("UserName"),
+                time: "11:11:11", //(new Date().getTime() / 1000),  //CHANGE THIS BACK WHEN DATABASE IS FIXED
+                note: note
+            };
+            console.log("saving note ->", obj);
+            tools.makeRequest('post', 'setNotes', obj).done(function(resp) {
+                console.log("Set note ->", resp);
+            }).fail(function(error) {
+                console.log("Could not save data ->", error);
+            })
+        } else {
+            alert("Please log in or sign up to save a note")
+            console.log("Error saving note to name ->", sessionStorage.getItem("UserName"))
+        }
+    }
+
+
+
+
+
 
     //initialize canvas
     if (!window["fabric"]) {
@@ -83,6 +118,7 @@
             //save canvas by converting into JSON 
             saveEl.on('click', function() {
                 var json = JSON.stringify(canvas.toJSON());
+                saveNote(json);
                 console.log('CURRENT CANVAS: \n\n' + json);
             });
 

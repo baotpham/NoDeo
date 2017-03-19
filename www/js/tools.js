@@ -21,14 +21,15 @@ function ToolModule() {
             dataType: "script",
             success: function() {
                 console.log('map ->', mappings);
-                $("#page").load('./' + mappings[page]["page"] + '.html', function() {
-                    console.log("loading page components");
-                    getMultiScripts(mappings[page]["scripts"], '').done(function() {
-                        console.log("GOT ALL THE SCRIPTS AND PAGES");
-                    }).fail(function(error) {
-                        console.log('Error -> ', error);
-                    });
-                });
+                window.location = './' + mappings[page]["page"] + '.html';
+                // $("#page").load('./' + mappings[page]["page"] + '.html', function() {
+                //     console.log("loading page components");
+                //     getMultiScripts(mappings[page]["scripts"], '').done(function() {
+                //         console.log("GOT ALL THE SCRIPTS AND PAGES");
+                //     }).fail(function(error) {
+                //         console.log('Error -> ', error);
+                //     });
+                // });
             }
         })
     }

@@ -35,7 +35,8 @@ database.prototype.getUserTable = function() {
 };
 
 database.prototype.login = function(username, password) {
-    var str = 'SELECT type FROM users WHERE username=\'' + username + '\' AND password = PASSWORD(\'' + password + '\');';
+    //DAGMAWI - Ben, having the PASSWORD() around the password didnt work for me :-(
+    var str = 'SELECT type FROM users WHERE username=\'' + username + '\' AND password = \'' + password + '\';';
     var self = this;
     console.log('query', str);
     con.query(str, function(err, rows, fields) {
@@ -56,16 +57,16 @@ database.prototype.login = function(username, password) {
 
 
 database.prototype.setNotes = function(username, time, note) {
-    var str = 'INSERT INTO notes ( username, time, note ) VALUES ( \'' + username + '\', \'' + time + '\', \'' + note + '\' )';
+    var str = 'INSERT INTO notes ( username, time, note ) VALUES ( \'' + username + '\', \'' + time + '\', \'' + note + '\' );';
     var self = this;
     console.log('query', str);
     con.query(str, function(err, rows, fields) {
         if (err) {
             console.log('Error', err);
             return 0;
-        } 
+        }
     });
-    
+
     // Check if row was added
     str = 'SELECT ROW_COUNT()'
     con.query(str, function(err, rows, fields) {
@@ -84,7 +85,7 @@ database.prototype.setNotes = function(username, time, note) {
 
 // Retrieve all notes associated with username
 database.prototype.getNotes = function(username) {
-    var str = 'SELECT note FROM notes WHERE username = \'' + username + '\'';
+    var str = 'SELECT note,time FROM notes WHERE username = \'' + username + '\';';
     var self = this;
     console.log('query', str);
     con.query(str, function(err, rows, fields) {
@@ -93,9 +94,9 @@ database.prototype.getNotes = function(username) {
             return 0;
         } else {
             if (rows.length > 0) {
-                self.emit('gotNotes', 1); // I think you want to actually emit the notes' JSON rather than an integer?
+                self.emit('gotNotes', rows); // I think you want to actually emit the notes' JSON rather than an integer?
             } else {
-                self.emit('gotNotes', 0);
+                self.emit('gotNotes', "");
             }
         }
     });
@@ -103,7 +104,7 @@ database.prototype.getNotes = function(username) {
 
 
 database.prototype.setUser = function(username, password, type) {
-    var str = 'INSERT INTO users ( username, password, type ) VALUES ( \'' + username + '\', \'' + password + '\', \'' + type + '\' )';
+    var str = 'INSERT INTO users ( username, password, type ) VALUES ( \'' + username + '\', \'' + password + '\', \'' + type + '\' );';
     var self = this;
     console.log('query', str);
     con.query(str, function(err, rows, fields) {
@@ -112,7 +113,7 @@ database.prototype.setUser = function(username, password, type) {
             return 0;
         }
     });
-    
+
     // Check if user was added
     str = 'SELECT ROW_COUNT()'
     con.query(str, function(err, rows, fields) {

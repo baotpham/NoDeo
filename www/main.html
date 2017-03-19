@@ -1,75 +1,92 @@
-<link rel="stylesheet" type="text/css" href="css/extra.css">
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#"><strong>NoDeo</strong></a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-        </ul>
-        <ul class="nav navbar-nav" id="nav_center">
-            <li>
-                <form action="http://www.youtube.com/results" method="get" target="_blank">
-                    <input name="search_query" type="text" maxlength="128" />
-                    <select name="search_type">
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>NoDeo</title>
+    <script src=""></script>
+    <link rel="stylesheet" type="text/css" href="css/extra.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/player.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#"><strong>NoDeo</strong></a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+            </ul>
+            <ul class="nav navbar-nav" id="nav_center">
+                <li>
+                    <form action="http://www.youtube.com/results" method="get" target="_blank">
+                        <input name="search_query" type="text" maxlength="128" />
+                        <select name="search_type">
 								<option value="">Videos</option>
 								<option value="search_users">Channels</option>
 							</select>
-                    <input type="submit" value="Search" />
-                </form>
-            </li>
-        </ul>
-        <div id="loginOrSignup">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" id="signup_button">Sign Up</a></li>
-                <li><a href="#" id="login_button">Log In</a></li>
+                        <input type="submit" value="Search" />
+                    </form>
+                </li>
             </ul>
-        </div>
-    </div>
-</nav>
-
-<div id="player" class="player">
-
-</div>
-
-<div class="canvas">
-    <!--canvas container-->
-    <div class="container" style="display: inline-block; margin-left: 10px">
-        <div class="row">
-            <div class="col-md-10">
-                <canvas id="canvas" width="300" height="300" style="border:2px solid;"></canvas>
+            <div id="loginOrSignup">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" id="signup_button">Sign Up</a></li>
+                    <li><a href="#" id="login_button">Log In</a></li>
+                </ul>
             </div>
         </div>
+    </nav>
+
+    <div id="player" class="player">
+
     </div>
 
-    <!--canvas file menu-->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <button class="btn btn-large" id="save-canvas">Save</button>
-                <button class="btn btn-large" id="drawing-mode">Cancel drawing mode</button><br>
-                <button class="btn btn-large" id="clear-canvas">Clear</button><br>
+    <div class="canvas">
+        <!--canvas container-->
+        <div class="container" style="display: inline-block; margin-left: 10px">
+            <div class="row">
+                <div class="col-md-10">
+                    <canvas id="canvas" width="300" height="300" style="border:2px solid;"></canvas>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!--canvas tools options-->
-    <div class="container row" style="display: inline-block; margin-left: 10px">
-        <div class="col-sm-4" id="drawing-mode-options">
-            <label for="drawing-mode-selector">Mode:</label>
-            <select id="drawing-mode-selector">
+        <!--canvas file menu-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <button class="btn btn-large" id="save-canvas">Save</button>
+                    <button class="btn btn-large" id="drawing-mode">Cancel drawing mode</button><br>
+                    <button class="btn btn-large" id="clear-canvas">Clear</button><br>
+                </div>
+            </div>
+        </div>
+
+        <!--canvas tools options-->
+        <div class="container row" style="display: inline-block; margin-left: 10px">
+            <div class="col-sm-4" id="drawing-mode-options">
+                <label for="drawing-mode-selector">Mode:</label>
+                <select id="drawing-mode-selector">
 					<option>Pencil</option>
 					<option>Circle</option>
 					<option>Spray</option>
 				</select><br>
 
-            <label for="drawing-line-width">Line width:</label>
-            <input type="range" value="10" min="0" max="20" id="drawing-line-width"><br>
+                <label for="drawing-line-width">Line width:</label>
+                <input type="range" value="10" min="0" max="20" id="drawing-line-width"><br>
 
-            <label for="drawing-color">Line color:</label>
-            <input type="color" value="#ff0000" id="drawing-color"><br>
+                <label for="drawing-color">Line color:</label>
+                <input type="color" value="#ff0000" id="drawing-color"><br>
+            </div>
         </div>
     </div>
-</div>
+</body>
+
+</html>

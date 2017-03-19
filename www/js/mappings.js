@@ -22,5 +22,11 @@ mappings = {
         "scripts": [
             "js/login.js"
         ]
+    },
+    "signup": {
+        "page": "signup",
+        "scripts": [
+            "js/signup.js"
+        ]
     }
 }
