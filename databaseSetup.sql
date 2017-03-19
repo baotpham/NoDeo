@@ -12,6 +12,7 @@ CREATE TABLE users (
 CREATE TABLE notes (
 	noteID INT KEY AUTO_INCREMENT,
     username VARCHAR(20),
-    time TIME,
-    note TEXT
+    time DECIMAL(65,4),
+    note TEXT,
+    url VARCHAR(255)
 );
