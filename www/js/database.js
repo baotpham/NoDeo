@@ -56,8 +56,8 @@ database.prototype.login = function(username, password) {
 
 
 
-database.prototype.setNotes = function(username, time, note) {
-    var str = 'INSERT INTO notes ( username, time, note ) VALUES ( \'' + username + '\', \'' + time + '\', \'' + note + '\' );';
+database.prototype.setNotes = function(username, time, note, url) {
+    var str = 'INSERT INTO notes ( username, time, note, url ) VALUES ( \'' + username + '\', \'' + time + '\', \'' + note + '\', \'' + url + '\' )';
     var self = this;
     console.log('query', str);
     con.query(str, function(err, rows, fields) {
@@ -84,8 +84,8 @@ database.prototype.setNotes = function(username, time, note) {
 };
 
 // Retrieve all notes associated with username
-database.prototype.getNotes = function(username) {
-    var str = 'SELECT note,time FROM notes WHERE username = \'' + username + '\';';
+database.prototype.getNotes = function(username,url) {
+    var str = 'SELECT note FROM notes WHERE username = \'' + username + '\' AND url = \'' + url + '\'';
     var self = this;
     console.log('query', str);
     con.query(str, function(err, rows, fields) {
