@@ -118,7 +118,6 @@
                     document.getElementById("canvasContainer").className = "canvasContainer-show";
                     hideEl.html("Hide Note");
                 }
-                
             });
 
             //clear canvas
