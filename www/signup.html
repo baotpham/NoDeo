@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html>
 
 <head>
@@ -37,6 +37,61 @@
             </div>
         </div>
     </form>
+</body>
+
+</html>-->
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- If IE use the latest rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Set the page to the width of the device and set the zoon level -->
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+
+    <title>NoDeo Sign-Up</title>
+
+    <!--link tag with style sheet files -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One|Sansita" rel="stylesheet">
+
+
+    <!--Script atsg to include jquery and other js files-->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="js/signup.js"></script>
+
+</head>
+
+<body>
+    <div class="container" style="text-align: center">
+        <div class="page-header">
+            <h1 style="font-family: Rubik Mono One;font-size:700%;">NoDeo</h1>
+            <h2 style="font-size:200%;">Create your account!</h2>
+        </div>
+        <form action="/setUser" method="post">
+            <div>
+                <label><b>Username</b></label><br>
+                <input type="text" placeholder="Enter Username" name="username" required>
+                <br><br>
+                <label><b>Password</b></label><br>
+                <input type="password" placeholder="Enter Password" name="password" required>
+                <br><br>
+                <label><b>Repeat Password</b></label><br>
+                <input type="password" placeholder="Repeat Password" name="password-repeat" required>
+                <br><br>
+                <input type="checkbox" checked="checked"> Remember me
+                <br><br>
+                <button type="button" class="btn btn-danger btn-md" id="cancel_button">Cancel</button>
+                <button class="btn btn-success btn-md" id="signupbtn">Sign-up</button>
+                <br>
+            </div>
+        </form>
+
+        <br><br>
+
+    </div>
+
 </body>
 
 </html>
