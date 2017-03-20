@@ -38,7 +38,6 @@ database.prototype.login = function(username, password) {
     //DAGMAWI - Ben, having the PASSWORD() around the password didnt work for me :-(
     var str = 'SELECT type FROM users WHERE username=\'' + username + '\' AND password = \'' + password + '\';';
     var self = this;
-    console.log('query', str);
     con.query(str, function(err, rows, fields) {
         if (err) {
             console.log('Error', err);
