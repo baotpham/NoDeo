@@ -1,0 +1,110 @@
+.pullRight {
+    margin: 0 0 40px;
+    align-content: center;
+    position: absolute;
+    right: 16px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.back {
+    width: 20%;
+}
+
+
+/*Overlaying video and canvas*/
+
+#canvasPlayerContainer {
+    margin-left: 20px;
+    width: 680px;
+    height: 390px;
+    float: left;
+    position: relative;
+}
+
+#player {
+    top: 0;
+    bottom: 0;
+    position: absolute;
+}
+
+.canvasContainer-show {
+    position: absolute;
+    height: 348px;
+    top: 0;
+    bottom: 0;
+    z-index: 20;
+}
+
+.canvasContainer-hide {
+    display: none;
+}
+
+
+/* Full-width input fields */
+
+input[type=text],
+input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+
+/* Set a style for all buttons */
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+
+/* Extra styles for the cancel button */
+
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+
+/* Float cancel and signup buttons and add an equal width */
+
+.cancelbtn,
+.signupbtn {
+    float: left;
+    width: 50%;
+}
+
+
+/* Add padding to container elements */
+
+.container {
+    padding: 16px;
+}
+
+
+/* Clear floats */
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+/* Change styles for cancel button and signup button on extra small screens */
+
+@media screen and (max-width: 300px) {
+    .cancelbtn,
+    .signupbtn {
+        width: 100%;
+    }
+}

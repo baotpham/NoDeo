@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>NoDeo</title>
+    <script src=""></script>
+    <link rel="stylesheet" type="text/css" href="css/extra.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/player.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#"><strong>NoDeo</strong></a>
+            </div>
+            <div class="nav navbar-nav" id="nav_center">
+                <form action="http://www.youtube.com/results" method="get" target="_blank" style="display: flex">
+                    <input name="search_query" type="text" maxlength="128" />
+                    <select name="search_type">
+                        <option value="">Videos</option>
+                        <option value="search_users">Channels</option>
+                    </select>
+                    <input type="submit" value="Search" />
+                </form>
+            </div>
+            <div class="nav navbar-nav" style="padding-left: 30px;">
+                <form style="display: flex">
+                    <input name="search_query" type="text" placeholder="Please paste the YouTube link here" style="width: 300px;"/>
+                    <input type="submit" value="Submit" />
+                </form>
+            </div>
+            <div id="loginOrSignup">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" id="signup_button">Sign Up</a></li>
+                    <li><a href="#" id="login_button">Log In</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!--canvas and video-->
+    <div id="canvasPlayerContainer">
+        <div id="player"></div>
+        <div id="canvasContainer" class="canvasContainer-show">
+            <canvas id="canvas" width="640" height="348" style="border:2px solid;"></canvas>
+        </div>
+    </div>
+
+    <!--canvas file menu-->
+    <div style="float: left; margin: 30px;">
+        <button class="btn btn-large" id="save-canvas">Save</button>
+        <button class="btn btn-large" id="drawing-mode">Exit drawing mode</button><br>
+        <button class="btn btn-large" id="clear-canvas">Clear</button><br>
+        <button class="btn btn-large" id="hide-canvas">Hide Note</button><br>
+    </div>
+
+    <!--canvas tools options-->
+    <div style="float: left; margin: 30px; width: 200px">
+        <div id="drawing-mode-options">
+            <label for="drawing-mode-selector">Mode:</label>
+            <select id="drawing-mode-selector">
+                <option>Pencil</option>
+                <option>Circle</option>
+                <option>Spray</option>
+            </select><br>
+
+            <label for="drawing-line-width">Line width:</label>
+            <input type="range" value="5" min="0" max="20" id="drawing-line-width"><br>
+
+            <label for="drawing-color">Line color:</label>
+            <input type="color" value="#ff0000" id="drawing-color"><br>
+        </div>
+    </div>
+    
+</body>
+
+</html>
