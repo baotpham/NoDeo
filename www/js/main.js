@@ -165,7 +165,8 @@
                         console.log('time: ' + json[$(this).html()].note);
                         canvas0.loadFromJSON(json[$(this).html()].note, canvas0.renderAll.bind(canvas0));
                         console.log('time: ' + json[$(this).html()].time);
-                        document.getElementById('timeDisplay').innerHTML = 'Time: ' + json[$(this).html()].time;
+                        var time = parseFloat(json[$(this).html()].time/100).toFixed(2);
+                        document.getElementById('timeDisplay').innerHTML = 'Time: ' + time;
                     });
 
 
