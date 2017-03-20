@@ -10,25 +10,45 @@
         console.log('main.js HERE');
         setLoginSignUpIdentifier();
         setEventHandlers();
+        console.log(player);
         // getNotes("Dagmawi", "myurl.com");
     })
 
     // Attach all the event handlers for the buttons
     function setEventHandlers() {
-
         $("#login_button").click(function() {
             console.log("login clicked");
             tools.loadPage("login");
             tools.loadPage("login");
         })
-
         $("#signup_button").click(function() {
             console.log("signup clicked");
             tools.loadPage("signup")
         })
-
         $("#logout_button").click(logoutUser)
+        $("#youtube_link_button").on('click', function() {
+            url = $("#youtube_link_input")[0].value
+            getVideoFromURL(url);
+        });
     }
+
+
+    function getVideoFromURL(url) {
+        // URL Format : https://www.youtube.com/watch?v=VIDEO_ID
+        if (url.indexOf("&") == -1) {
+            id = url.slice(32)
+        } else {
+            id = url.slice(32, url.indexOf("&"))
+        }
+        console.log(url, id);
+
+        if (id != "") {
+            console.log("submit clicked", $("#youtube_link_input")[0].value);
+            // Media URL FORMAT : http://www.youtube.com/v/VIDEO_ID
+            player.loadVideoByUrl("http://www.youtube.com/v/" + id, 0, "large")
+        }
+    }
+
 
 
     function setLoginSignUpIdentifier() {
@@ -61,6 +81,7 @@
             url: url
         }).done(function(notes) {
             console.log("Got notes", JSON.parse(notes));
+            // return
         }).fail(function(error) {
             console.log("Could not get data ->", error);
         })
@@ -74,6 +95,7 @@
                 username: sessionStorage.getItem("UserName"),
                 // *********THIS TIME SHOULD BE FROM YOUTUBE API***************
                 time: (new Date().getTime() / 1000), //CHANGE THIS BACK WHEN DATABASE IS FIXED
+
                 note: note,
                 url: url
             };

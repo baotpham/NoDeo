@@ -13,8 +13,8 @@ mappings = {
             "http://code.jquery.com/jquery-1.11.1.min.js",
             "http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js",
             // "js/fabric.js",
-            "js/main.js",
-            "js/player.js"
+            "js/player.js",
+            "js/main.js"
         ]
     },
     "login": {

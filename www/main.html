@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script src="js/main.js"></script>
     <script src="js/player.js"></script>
+    <script src="js/main.js"></script>
 </head>
 
 <body>
@@ -40,10 +40,10 @@
                 </ul>
             </div>
             <div class="nav navbar-nav" style="padding-left: 30px;">
-                <form style="display: flex">
-                    <input name="search_query" type="text" placeholder="Please paste the YouTube link here" style="width: 300px;"/>
-                    <input type="submit" value="Submit" />
-                </form>
+                <!--<form style="display: flex">-->
+                <input name="search_query" type="text" placeholder="Please paste the YouTube ID here" style="width: 300px;" id="youtube_link_input" />
+                <input type="submit" value="Submit" id="youtube_link_button" />
+                <!--</form>-->
             </div>
         </div>
     </nav>
@@ -82,7 +82,7 @@
             <input type="color" value="#ff0000" id="drawing-color"><br>
         </div>
     </div>
-    
+
 </body>
 
 </html>
