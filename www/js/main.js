@@ -129,6 +129,7 @@
             //set up variables
             var drawingModeEl = $('#drawing-mode'),
                 drawingOptionsEl = $('#drawing-mode-options'),
+                drawingModeSeletor = $('#drawing-mode-selector'),
                 drawingColorEl = $('#drawing-color'),
                 drawingLineWidthEl = $('#drawing-line-width'),
                 clearEl = $('#clear-canvas'),
@@ -165,16 +166,16 @@
                 canvas.isDrawingMode = !canvas.isDrawingMode;
                 if (canvas.isDrawingMode) {
                     drawingModeEl.html('Exit drawing mode');
-                    drawingOptionsEl.attr["display"] = '';
+                    drawingModeSeletor.removeAttr("disabled");
                 } else {
                     drawingModeEl.html('Enter drawing mode');
-                    drawingOptionsEl.attr["display"] = 'none';
+                    drawingModeSeletor.attr("disabled", "disabled");
                 }
             });
 
 
             //select mode
-            $('#drawing-mode-selector').change(function() {
+            drawingModeSeletor.change(function() {
                 canvas.freeDrawingBrush = new fabric[this.value + 'Brush'](canvas);
                 if (canvas.freeDrawingBrush) {
                     canvas.freeDrawingBrush.color = drawingColorEl[0].value;
