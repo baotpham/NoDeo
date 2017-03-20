@@ -12,6 +12,29 @@
 }
 
 
+/*Overlaying video and canvas*/
+ #canvasPlayerContainer{
+    margin-left: 20px;
+    width: 680px;
+    height: 390px;
+    float: left;
+    position: relative;
+}
+#player{
+    top: 0;
+    bottom: 0;
+    position: absolute;
+}
+#canvasContainer {
+    position: absolute;
+    height: 348px;
+    top: 0;
+    bottom: 0;
+    z-index: 20;
+}
+
+
+
 /* Full-width input fields */
 
 input[type=text],

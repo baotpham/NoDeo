@@ -44,49 +44,40 @@
         </div>
     </nav>
 
-    <div id="player" class="player">
 
-    </div>
-
-    <div class="canvas">
-        <!--canvas container-->
-        <div class="container" style="display: inline-block; margin-left: 10px">
-            <div class="row">
-                <div class="col-md-10">
-                    <canvas id="canvas" width="300" height="300" style="border:2px solid;"></canvas>
-                </div>
-            </div>
-        </div>
-
-        <!--canvas file menu-->
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <button class="btn btn-large" id="save-canvas">Save</button>
-                    <button class="btn btn-large" id="drawing-mode">Cancel drawing mode</button><br>
-                    <button class="btn btn-large" id="clear-canvas">Clear</button><br>
-                </div>
-            </div>
-        </div>
-
-        <!--canvas tools options-->
-        <div class="container row" style="display: inline-block; margin-left: 10px">
-            <div class="col-sm-4" id="drawing-mode-options">
-                <label for="drawing-mode-selector">Mode:</label>
-                <select id="drawing-mode-selector">
-					<option>Pencil</option>
-					<option>Circle</option>
-					<option>Spray</option>
-				</select><br>
-
-                <label for="drawing-line-width">Line width:</label>
-                <input type="range" value="10" min="0" max="20" id="drawing-line-width"><br>
-
-                <label for="drawing-color">Line color:</label>
-                <input type="color" value="#ff0000" id="drawing-color"><br>
-            </div>
+    <!--canvas and video-->
+    <div id="canvasPlayerContainer">
+        <div id="player"></div>
+        <div id="canvasContainer">
+            <canvas id="canvas" width="640" height="348" style="border:2px solid;"></canvas>
         </div>
     </div>
+
+    <!--canvas file menu-->
+    <div style="float: left; margin: 30px;">
+        <button class="btn btn-large" id="save-canvas">Save</button>
+        <button class="btn btn-large" id="drawing-mode">Exit drawing mode</button><br>
+        <button class="btn btn-large" id="clear-canvas">Clear</button><br>
+    </div>
+
+    <!--canvas tools options-->
+    <div style="float: left; margin: 30px; width: 200px">
+        <div id="drawing-mode-options">
+            <label for="drawing-mode-selector">Mode:</label>
+            <select id="drawing-mode-selector">
+                <option>Pencil</option>
+                <option>Circle</option>
+                <option>Spray</option>
+            </select><br>
+
+            <label for="drawing-line-width">Line width:</label>
+            <input type="range" value="5" min="0" max="20" id="drawing-line-width"><br>
+
+            <label for="drawing-color">Line color:</label>
+            <input type="color" value="#ff0000" id="drawing-color"><br>
+        </div>
+    </div>
+    
 </body>
 
 </html>
