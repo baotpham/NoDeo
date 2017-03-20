@@ -11,7 +11,7 @@
         setLoginSignUpIdentifier();
         setEventHandlers();
         console.log(player);
-        // getNotes("Dagmawi", "myurl.com");
+        // getNotes("Dagmawi", "https://www.youtube.com/watch?v=txKUHWk5nXE");
     })
 
     // Attach all the event handlers for the buttons
@@ -155,9 +155,14 @@
             //save canvas by converting into JSON 
             saveEl.on('click', function() {
                 var json = JSON.stringify(canvas.toJSON());
-                // Get URL from youtube API
-                saveNote(json, "myurl.com");
-                console.log('CURRENT CANVAS: \n\n' + json);
+                console.log("url is", player.getVideoUrl())
+
+                if (player.getVideoUrl() && json) {
+                    saveNote(json, player.getVideoUrl());
+                    console.log('CURRENT CANVAS: \n\n' + json);
+                } else {
+                    console.log("Save Failed");
+                }
             });
 
 

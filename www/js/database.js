@@ -84,8 +84,8 @@ database.prototype.setNotes = function(username, time, note, url) {
 };
 
 // Retrieve all notes associated with username
-database.prototype.getNotes = function(username,url) {
-    var str = 'SELECT note FROM notes WHERE username = \'' + username + '\' AND url = \'' + url + '\'';
+database.prototype.getNotes = function(username, url) {
+    var str = 'SELECT time,note FROM notes WHERE username = \'' + username + '\' AND url = \'' + url + '\'';
     var self = this;
     console.log('query', str);
     con.query(str, function(err, rows, fields) {
