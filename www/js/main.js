@@ -143,7 +143,7 @@
             });
 
             //load the canvas
-            $('#load-notes').on('click', function () {
+            $('#load-notes').on('click', function() {
                 console.log(sessionStorage.getItem("UserName"));
                 console.log(player.getVideoUrl());
                 tools.makeRequest('get', 'getNotes', {
@@ -154,13 +154,13 @@
                     var json = JSON.parse(notes);
                     console.log("Got notes", json);
                     var buttonName;
-
-                    for(var i = 0; i<json.length; i++){
-                        document.getElementById("noteNumber").innerHTML += "<button class='id_button' value='"+ i +"' style='width: 100px;'>" + i + "</button>";
+                    document.getElementById("noteNumber").innerHTML = "";
+                    for (var i = 0; i < json.length; i++) {
+                        document.getElementById("noteNumber").innerHTML += "<button class='id_button' value='" + i + "' style='width: 100px;'>" + i + "</button>";
                         buttonName = "#" + i;
                     }
 
-                    $(".id_button").on('click', function(){
+                    $(".id_button").on('click', function() {
                         console.log($(this).html());
                         console.log('time: ' + json[$(this).html()].note);
                         canvas0.loadFromJSON(json[$(this).html()].note, canvas0.renderAll.bind(canvas0));
