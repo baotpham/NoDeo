@@ -107,7 +107,19 @@
                 drawingColorEl = $('#drawing-color'),
                 drawingLineWidthEl = $('#drawing-line-width'),
                 clearEl = $('#clear-canvas'),
-                saveEl = $('#save-canvas');
+                saveEl = $('#save-canvas'),
+                hideEl = $('#hide-canvas');
+            
+            hideEl.on('click', function() {
+                if(document.getElementById("canvasContainer").className == "canvasContainer-show"){
+                    document.getElementById("canvasContainer").className = "canvasContainer-hide";
+                    hideEl.html("Show Note");
+                }else{
+                    document.getElementById("canvasContainer").className = "canvasContainer-show";
+                    hideEl.html("Hide Note");
+                }
+                
+            });
 
             //clear canvas
             clearEl.on('click', function() {
