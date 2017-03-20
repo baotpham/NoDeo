@@ -75,26 +75,13 @@
             // })
     }
 
-    function getNotes(user, url) {
-        tools.makeRequest('get', 'getNotes', {
-            username: user,
-            url: url
-        }).done(function(notes) {
-            console.log("Got notes", JSON.parse(notes));
-            // return
-        }).fail(function(error) {
-            console.log("Could not get data ->", error);
-        })
-    }
-
-
 
     function saveNote(note, url) {
         if (sessionStorage.getItem("UserName") && sessionStorage.getItem("UserName") != "") {
             var obj = {
                 username: sessionStorage.getItem("UserName"),
                 // *********THIS TIME SHOULD BE FROM YOUTUBE API***************
-                time: (new Date().getTime() / 1000), //CHANGE THIS BACK WHEN DATABASE IS FIXED
+                time: player.getCurrentTime(), //CHANGE THIS BACK WHEN DATABASE IS FIXED
 
                 note: note,
                 url: url
@@ -120,6 +107,10 @@
     if (!window["fabric"]) {
         $.getScript('./js/fabric.js', function(data, textStatus, jqxhr) {
             var canvas = this.__canvas = new fabric.Canvas('canvas', {
+                isDrawingMode: true
+            });
+
+            var canvas0 = this.__canvas = new fabric.Canvas('canvas0', {
                 isDrawingMode: true
             });
 
@@ -149,6 +140,38 @@
             //clear canvas
             clearEl.on('click', function() {
                 canvas.clear();
+            });
+
+            //load the canvas
+            $('#load-notes').on('click', function () {
+                console.log(sessionStorage.getItem("UserName"));
+                console.log(player.getVideoUrl());
+                tools.makeRequest('get', 'getNotes', {
+                    username: sessionStorage.getItem("UserName"),
+                    url: player.getVideoUrl()
+                }).done(function(notes) {
+
+                    var json = JSON.parse(notes);
+                    console.log("Got notes", json);
+                    var buttonName;
+
+                    for(var i = 0; i<json.length; i++){
+                        document.getElementById("noteNumber").innerHTML += "<button class='id_button' value='"+ i +"' style='width: 100px;'>" + i + "</button>";
+                        buttonName = "#" + i;
+                    }
+
+                    $(".id_button").on('click', function(){
+                        console.log($(this).html());
+                        console.log('time: ' + json[$(this).html()].note);
+                        canvas0.loadFromJSON(json[$(this).html()].note, canvas0.renderAll.bind(canvas0));
+                        console.log('time: ' + json[$(this).html()].time);
+                        document.getElementById('timeDisplay').innerHTML = 'Time: ' + json[$(this).html()].time;
+                    });
+
+
+                }).fail(function(error) {
+                    console.log("Could not get data ->", error);
+                })
             });
 
 
