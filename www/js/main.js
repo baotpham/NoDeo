@@ -10,7 +10,7 @@
         console.log('main.js HERE');
         setLoginSignUpIdentifier();
         setEventHandlers();
-        getNotes("Dagmawi");
+        // getNotes("Dagmawi", "myurl.com");
     })
 
     // Attach all the event handlers for the buttons
@@ -55,9 +55,10 @@
             // })
     }
 
-    function getNotes(user) {
+    function getNotes(user, url) {
         tools.makeRequest('get', 'getNotes', {
-            username: user
+            username: user,
+            url: url
         }).done(function(notes) {
             console.log("Got notes", JSON.parse(notes));
         }).fail(function(error) {
@@ -67,12 +68,14 @@
 
 
 
-    function saveNote(note) {
+    function saveNote(note, url) {
         if (sessionStorage.getItem("UserName") && sessionStorage.getItem("UserName") != "") {
             var obj = {
                 username: sessionStorage.getItem("UserName"),
-                time: "11:11:11", //(new Date().getTime() / 1000),  //CHANGE THIS BACK WHEN DATABASE IS FIXED
-                note: note
+                // *********THIS TIME SHOULD BE FROM YOUTUBE API***************
+                time: (new Date().getTime() / 1000), //CHANGE THIS BACK WHEN DATABASE IS FIXED
+                note: note,
+                url: url
             };
             console.log("saving note ->", obj);
             tools.makeRequest('post', 'setNotes', obj).done(function(resp) {
@@ -109,12 +112,12 @@
                 clearEl = $('#clear-canvas'),
                 saveEl = $('#save-canvas'),
                 hideEl = $('#hide-canvas');
-            
+
             hideEl.on('click', function() {
-                if(document.getElementById("canvasContainer").className == "canvasContainer-show"){
+                if (document.getElementById("canvasContainer").className == "canvasContainer-show") {
                     document.getElementById("canvasContainer").className = "canvasContainer-hide";
                     hideEl.html("Show Note");
-                }else{
+                } else {
                     document.getElementById("canvasContainer").className = "canvasContainer-show";
                     hideEl.html("Hide Note");
                 }
@@ -129,7 +132,8 @@
             //save canvas by converting into JSON 
             saveEl.on('click', function() {
                 var json = JSON.stringify(canvas.toJSON());
-                saveNote(json);
+                // Get URL from youtube API
+                saveNote(json, "myurl.com");
                 console.log('CURRENT CANVAS: \n\n' + json);
             });
 

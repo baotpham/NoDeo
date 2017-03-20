@@ -2,9 +2,9 @@
     margin: 0 0 40px;
     align-content: center;
     position: absolute;
-    top: 8px;
     right: 16px;
     font-size: 18px;
+    cursor: pointer;
 }
 
 .back {
@@ -13,18 +13,21 @@
 
 
 /*Overlaying video and canvas*/
- #canvasPlayerContainer{
+
+#canvasPlayerContainer {
     margin-left: 20px;
     width: 680px;
     height: 390px;
     float: left;
     position: relative;
 }
-#player{
+
+#player {
     top: 0;
     bottom: 0;
     position: absolute;
 }
+
 .canvasContainer-show {
     position: absolute;
     height: 348px;
@@ -32,10 +35,10 @@
     bottom: 0;
     z-index: 20;
 }
+
 .canvasContainer-hide {
     display: none;
 }
-
 
 
 /* Full-width input fields */
